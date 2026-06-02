@@ -14,7 +14,7 @@ A matriz é então transmitida a um terceiro ESP32, denominado **T**, responsáv
 
 O sistema visual da instalação é desenvolvido em Processing e opera a partir da leitura serial de uma matriz binária enviada por circuitos ESP32 WROOM. Cada atualização recebida corresponde ao estado instantâneo das conexões físicas realizadas pelo público nos conectores da obra.
 
-![Registro do programa em Processing](img/processing-1.jpg)
+![Registro do programa em Processing](img/processing-1.gif)
 
 A matriz principal possui dimensão 16 × 16, sendo composta por valores binários (`0` ou `1`) que representam a presença ou ausência de conexão em cada coordenada `<s,m>`. Essas ativações são utilizadas simultaneamente em três camadas do sistema:
 
