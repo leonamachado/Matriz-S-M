@@ -176,11 +176,11 @@ Para a exposição do Realidades no EdA, propõe-se instalar o trabalho no prime
 
 ## Próximos passos
 
-A partir do resultado do circuito e do código na intelação anterior Tchantchanthantchan, elenca-se as seguintes tarefas para atualizar o trabalho para a exposição no EdA:
+A partir dos resultados obtidos com o circuito e o código desenvolvidos para a instalação anterior *Tchantchanthantchan*, elencam-se as seguintes tarefas para a atualização do trabalho visando à exposição no EdA:
 
-- [ ] Confecção de placas de circuito para evitar interferências e ruídos no funcionamento de **S** e **M** (Leona);
-- [x] Reforma dos conectores e reimpressão das peças com erros estruturais (Vinícius e Júlia);
-- [ ] Revisão do código de Processing, buscando adaptar para projeção com ao menos 2 projetores, pensando quais matrizes exibir, em quais paredes do espaço projetar; verificar se há alguma necessidade de alterar as funções do código atual, assim como eventuais estratégias de otimização (Leona, Vinícius, Bruna, Sérgio);
-- [ ] Planejar, comprar materiais e confeccionar suporte de sustentação para a coluna central do espaço (Miguel);
-- [ ] Planejar posicionamento dos projetores, listar materiais necessários e fazer mapeamento da projeção (Dimitri);
-- [ ] Adaptar Mini PC para ligar diretamente no trabalho, ajustado à projeção e recebemento mensagens dos circuitos (Leona, Bruna, Vinícius, Dimitri).
+* [ ] Confecção de placas de circuito para reduzir interferências e ruídos no funcionamento dos circuitos **S** e **M** (Leona);
+* [x] Reforma dos conectores e reimpressão das peças com falhas estruturais (Vinícius e Júlia);
+* [ ] Revisão do código em Processing, buscando adaptá-lo para projeções com ao menos dois projetores. Avaliar quais matrizes serão exibidas, em quais superfícies do espaço ocorrerão as projeções, verificar possíveis alterações nas funções atualmente utilizadas e definir eventuais estratégias de otimização (Leona, Vinícius, Bruna e Sérgio);
+* [ ] Planejamento, compra de materiais e confecção da estrutura de sustentação da coluna central do espaço (Miguel);
+* [ ] Planejamento do posicionamento dos projetores, levantamento dos materiais necessários e realização do mapeamento da projeção (Dimitri);
+* [ ] Adaptação do Mini PC para funcionamento dedicado à instalação, ajustando-o à projeção e ao recebimento das mensagens enviadas pelos circuitos (Leona, Bruna, Vinícius e Dimitri).
