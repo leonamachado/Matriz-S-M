@@ -10,3 +10,160 @@ Os pares registrados são armazenados por **M** em uma matriz binária `S × M` 
 ![Esquema de comunicação S × M](img/comunicacao-sm.jpg)
 
 A matriz é então transmitida a um terceiro ESP32, denominado **T**, responsável pela comunicação serial com o computador que executa o código em Processing encarregado da geração visual da projeção em tempo real. Paralelamente, **T** também recebe os dados provenientes do circuito contador de visitantes, utilizado para modular parâmetros dinâmicos da visualização, como velocidade, densidade e comportamento das linhas projetadas.
+## Processing
+
+O sistema visual da instalação é desenvolvido em Processing e opera a partir da leitura serial de uma matriz binária enviada por circuitos ESP32 WROOM. Cada atualização recebida corresponde ao estado instantâneo das conexões físicas realizadas pelo público nos conectores da obra.
+
+![Registro do programa em Processing](img/processing-1.jpg)
+
+A matriz principal possui dimensão 16 × 16, sendo composta por valores binários (`0` ou `1`) que representam a presença ou ausência de conexão em cada coordenada `<s,m>`. Essas ativações são utilizadas simultaneamente em três camadas do sistema:
+
+1. visualização dos nós ativos;
+2. geração probabilística das conexões gráficas;
+3. formação de traços de memória estatística.
+
+### Comunicação serial
+
+O código tenta inicialmente estabelecer comunicação serial através da porta `COM19`.
+
+Caso a porta não seja encontrada, o sistema permanece funcional em modo autônomo. Nesse estado, é possível ativar uma simulação pressionando a tecla `s`. A simulação produz ativações e desativações progressivas ao longo do grid, fazendo com que o programa gere internamente matrizes binárias coerentes com o protocolo serial utilizado pelos circuitos físicos.
+
+### Estrutura matricial
+
+A matriz principal é armazenada na variável:
+
+```java
+int[][] matriz = new int[16][16];
+```
+
+Cada posição da matriz corresponde a uma coordenada espacial da projeção.
+
+As informações recebidas serialmente são inicialmente escritas em um buffer temporário (`bufferMatriz`) e apenas aplicadas à matriz principal após o recebimento do comando `UPDATE`, garantindo sincronização completa entre os estados do sistema.
+
+### Nós visuais
+
+Cada célula ativa da matriz é desenhada como um nó circular animado.
+
+Os pontos possuem pequenas oscilações temporais calculadas por funções trigonométricas (`sin` e `cos`), cuja intensidade varia conforme o número de visitantes registrados no sistema. O resultado é um campo visual instável e continuamente vibrante.
+
+Cada nó também exibe:
+
+- sua coordenada matricial `<i,j>`;
+- a porcentagem relativa de memória acumulada naquela posição.
+
+### Traços de memória
+
+O sistema mantém uma matriz contínua de memória:
+
+```java
+float[][] ativacoes
+```
+
+Essa estrutura não registra apenas ativações instantâneas, mas sim a persistência estatística das conexões ao longo do tempo.
+
+Sempre que uma coordenada é ativada:
+
+```java
+ativacoes[i][j] += 1.0;
+```
+
+Paralelamente, todas as posições sofrem um processo contínuo de esquecimento:
+
+```java
+ativacoes[i][j] *= memoryDecay;
+```
+
+O parâmetro:
+
+```java
+float memoryDecay = 0.9995;
+```
+
+define a velocidade de dissipação dos traços acumulados.
+
+Isso produz um modelo probabilístico dinâmico no qual:
+- conexões recorrentes tornam-se mais prováveis;
+- padrões pouco utilizados desaparecem gradualmente;
+- o sistema preserva apenas memórias estatisticamente reforçadas.
+
+### Geração probabilística das conexões
+
+As linhas desenhadas na projeção não representam conexões físicas diretas entre os cabos. Elas são geradas probabilisticamente a partir da distribuição dos traços de memória acumulados no sistema.
+
+A probabilidade de criação de uma conexão depende da intensidade da memória associada a determinada combinação:
+
+```java
+float probability =
+  memoryWeight /
+  (memoryWeight + 5.0);
+```
+
+Quanto mais recorrente uma região da matriz, maior sua tendência de produzir novas conexões gráficas.
+
+O resultado é um sistema visual que apresenta:
+- reforço estatístico de padrões recorrentes;
+- dissipação gradual de padrões esquecidos;
+- reorganização contínua das relações visuais.
+
+### Conexões animadas
+
+As conexões são desenhadas como curvas de Bézier animadas.
+
+Cada conexão possui parâmetros próprios de:
+- velocidade;
+- frequência;
+- turbulência;
+- oscilação;
+- dissipação.
+
+Esses parâmetros são parcialmente modulados pela quantidade de visitantes registrados no sistema, produzindo alterações graduais na densidade e no comportamento das linhas.
+
+### Painel probabilístico lateral
+
+À direita da projeção principal, o sistema exibe uma matriz numérica derivada da distribuição dos traços de memória.
+
+Cada célula representa:
+
+```math
+P(i,j) = M(i,j) / ΣM
+```
+
+onde:
+- `M(i,j)` corresponde à intensidade do traço de memória da posição;
+- `ΣM` corresponde à memória total acumulada do sistema.
+
+O painel funciona como uma visualização estatística contínua da memória ativa da instalação.
+
+### Visitantes
+
+O sistema recebe continuamente informações de presença pública através de um contador externo conectado via serial.
+
+O número de visitantes modula parâmetros globais da visualização, incluindo:
+- velocidade das conexões;
+- amplitude das oscilações;
+- frequência das curvas;
+- quantidade de conexões geradas.
+
+Essa influência é convertida em um valor contínuo de intensidade (`globalMood`) através de uma curva logarítmica suavizada.
+
+### Estrutura geral do sistema
+
+O fluxo principal do programa pode ser resumido da seguinte forma:
+
+```text
+ESP32 S/M
+    ↓
+matriz serial binária
+    ↓
+bufferMatriz
+    ↓
+matriz principal
+    ↓
+traços de memória
+    ↓
+probabilidades
+    ↓
+geração de conexões
+    ↓
+projeção visual
+```
