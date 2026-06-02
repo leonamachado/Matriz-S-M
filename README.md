@@ -7,6 +7,6 @@ A interação com a projeção por meio dos cabos e conectores disponíveis ao p
 
 Os pares registrados são armazenados por **M** em uma matriz binária `S × M` de dimensão `16 × 16`, correspondente ao número total de portas e cabos disponíveis em cada circuito. Cada célula da matriz representa o estado de conexão entre um par específico de portas. Em uma matriz `3 × 3`, por exemplo, o formato seria `<<0,0,0>,<0,0,0>,<0,0,0>>`, em que valores `1` indicam conexões ativas e valores `0` indicam ausência de conexão. O esquema a seguir oferece uma visualização da transmissão de mensagens entre os circuitos.
 
-![Esquema de comunicação S × M](images/instalacao_01.jpg)
+![Esquema de comunicação S × M](img/comunicacao-sm.jpg)
 
 A matriz é então transmitida a um terceiro ESP32, denominado **T**, responsável pela comunicação serial com o computador que executa o código em Processing encarregado da geração visual da projeção em tempo real. Paralelamente, **T** também recebe os dados provenientes do circuito contador de visitantes, utilizado para modular parâmetros dinâmicos da visualização, como velocidade, densidade e comportamento das linhas projetadas.
