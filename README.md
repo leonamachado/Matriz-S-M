@@ -173,3 +173,14 @@ projeção visual
 Para a exposição do Realidades no EdA, propõe-se instalar o trabalho no primeiro salão do espaço. Conforme mostra o esquema a seguir, os principais materiais do trabalho serão instalados na coluna central do salão com o auxílio de calhas elétricas atravessadas por barras roscadas. Na parte inferior, são instaladas as placas de circuito que controlam a projeção e o contador que exibe o número de visitantes no dia. A estas placas são ligados os cabos com conectores impressos em 3D com o auxílio de bornes SAK presos a um trilho elétrico. Na parte superior da coluna, são instalados suportes sobre os quais serão dispostos os projetores, assim como o mini computador e o distribuidor de sinal HDMI. Próximo à entrada, será fixado uma placa de circuito com um sensor que registra a entrada de visitantes na exposição.
 
 ![Esquema de montagem na exposição do EdA](img/montagem-sm.jpeg)
+
+## Próximos passos
+
+A partir do resultado do circuito e do código na intelação anterior Tchantchanthantchan, elenca-se as seguintes tarefas para atualizar o trabalho para a exposição no EdA:
+
+- [ ] Confecção de placas de circuito para evitar interferências e ruídos no funcionamento de **S** e **M** (Leona);
+- [x] Reforma dos conectores e reimpressão das peças com erros estruturais (Vinícius e Júlia);
+- [ ] Revisão do código de Processing, buscando adaptar para projeção com ao menos 2 projetores, pensando quais matrizes exibir, em quais paredes do espaço projetar; verificar se há alguma necessidade de alterar as funções do código atual, assim como eventuais estratégias de otimização (Leona, Vinícius, Bruna, Sérgio);
+- [ ] Planejar, comprar materiais e confeccionar suporte de sustentação para a coluna central do espaço (Miguel);
+- [ ] Planejar posicionamento dos projetores, listar materiais necessários e fazer mapeamento da projeção (Dimitri);
+- [ ] Adaptar Mini PC para ligar diretamente no trabalho, ajustado à projeção e recebemento mensagens dos circuitos (Leona, Bruna, Vinícius, Dimitri).
