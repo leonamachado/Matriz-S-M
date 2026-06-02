@@ -28,6 +28,12 @@ O código tenta inicialmente estabelecer comunicação serial através da porta 
 
 Caso a porta não seja encontrada, o sistema permanece funcional em modo autônomo. Nesse estado, é possível ativar uma simulação pressionando a tecla `s`. A simulação produz ativações e desativações progressivas ao longo do grid, fazendo com que o programa gere internamente matrizes binárias coerentes com o protocolo serial utilizado pelos circuitos físicos.
 
+### Controles
+
+* `s` — ativa/desativa a simulação serial quando a porta `COM19` não é encontrada;
+* `=` — incrementa manualmente o número de visitantes;
+* `-` — decresce manualmente o número de visitantes.
+
 ### Estrutura matricial
 
 A matriz principal é armazenada na variável:
